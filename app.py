@@ -5,7 +5,6 @@ import numpy as np
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import openai
-from transformers import GPT2TokenizerFast
 import requests
 import spacy
 from spacy_streamlit import visualize_ner
@@ -142,7 +141,6 @@ if userMainOption == "Transformer Artificial Intelligence":
     openai.api_key = GPT3TOKEN
     HUGGINGFACETOKEN = st.text_input("Hugging Face Token", "Insert Token Here")
     headers = {"Authorization": "Bearer " + HUGGINGFACETOKEN}
-    tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
 
 
     st.header("Text/Link Input")
@@ -152,12 +150,10 @@ if userMainOption == "Transformer Artificial Intelligence":
 
     if optionTextInput == "Text":
         text = st.text_area("Text/Corpus Input", "Input Text Here", height = 500)
-        tokens = len(tokenizer(text)['input_ids'])
 
     if optionTextInput == "Link":
         url = st.text_input("Website/Link Input", "Input Link Here")
         text = linkToText(url)
-        tokens = len(tokenizer(text)['input_ids'])
         
 
     # Abstract Summaries
@@ -168,7 +164,7 @@ if userMainOption == "Transformer Artificial Intelligence":
 
     if optionSummaryModels == "GPT3 Davinci":
 
-        if st.button("Summarize?") and tokens < 3750:
+        if st.button("Summarize?"):
 
             with st.spinner('Wait for it...'):
 
@@ -177,14 +173,11 @@ if userMainOption == "Transformer Artificial Intelligence":
             st.success('Done!')
             st.markdown(summary)
 
-        elif tokens > 3750:
-
-            st.warning("Please Shorten Text Input Length. You are at " + str(tokens) + ", the maximum for this model is 3750")
 
 
     if optionSummaryModels == "GPT3 Curie":
 
-        if st.button("Summarize?") and tokens < 1750:
+        if st.button("Summarize?"):
 
             with st.spinner('Wait for it...'):
 
@@ -193,9 +186,6 @@ if userMainOption == "Transformer Artificial Intelligence":
             st.success('Done!')
             st.markdown(summary)
 
-        elif tokens > 1750:
-
-            st.warning("Please Shorten Text Input Length. You are at " + str(tokens) + ", the maximum for this model is 1750")
         
 
     if optionSummaryModels == "Distilbart":
@@ -255,7 +245,7 @@ if userMainOption == "Transformer Artificial Intelligence":
         st.info("More advanced questions can be asked here")
         question = st.text_input("What is your question?")
 
-        if st.button("Question?") and tokens < 3750:
+        if st.button("Question?"):
 
             with st.spinner('Wait for it...'):
 
@@ -264,9 +254,6 @@ if userMainOption == "Transformer Artificial Intelligence":
             st.success('Done!')
             st.markdown(answer)
 
-        elif tokens > 3750:
-
-            st.warning("Please Shorten Text Input Length. You are at " + str(tokens) + ", the maximum for this model is 3750")
 
 
     if optionQAModels == "GPT3 Curie":
@@ -274,7 +261,7 @@ if userMainOption == "Transformer Artificial Intelligence":
         st.info("More advanced questions can be asked here")
         question = st.text_input("What is your question?")
 
-        if st.button("Question?") and tokens < 1750:
+        if st.button("Question?"):
 
             with st.spinner('Wait for it...'):
 
@@ -283,9 +270,6 @@ if userMainOption == "Transformer Artificial Intelligence":
             st.success('Done!')
             st.markdown(answer)
 
-        elif tokens > 1750:
-
-            st.warning("Please Shorten Text Input Length. You are at " + str(tokens) + ", the maximum for this model is 1750")
 
 
     if optionQAModels == "BERT-Large":
