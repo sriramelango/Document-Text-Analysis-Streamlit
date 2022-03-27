@@ -291,7 +291,7 @@ if userMainOption == "Transformer Artificial Intelligence":
                 })  
 
             st.success("Done!")
-            st.markdown("Confidence: " +  str(answer["score"]) + ", Answer: " + answer["answer"])
+            st.markdown(answer)
         
 
     if optionQAModels == "BERT-2":
@@ -311,7 +311,7 @@ if userMainOption == "Transformer Artificial Intelligence":
                 })  
 
             st.success("Done!")
-            st.markdown("Confidence: " +  str(answer["score"]) + ", Answer: " + answer["answer"])
+            st.markdown(answer)
 
 
     if optionQAModels == "Distilbert":
