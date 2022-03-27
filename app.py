@@ -9,10 +9,12 @@ import requests
 import spacy
 from spacy_streamlit import visualize_ner
 from wordcloud import WordCloud, STOPWORDS
-from nltk import tokenize
 from textblob import TextBlob
 import plotly.express as px
 from spacy_streamlit import visualize_parser
+import nltk
+nltk.download('punkt')
+from nltk import tokenize
 
 
 
