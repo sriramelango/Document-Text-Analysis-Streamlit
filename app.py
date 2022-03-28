@@ -139,10 +139,11 @@ def sentClassification(sentence):
 # Main Application
 if userMainOption == "Transformer Artificial Intelligence":
 
-    GPT3TOKEN = st.text_input("GPT3 Token", 'Insert Token Here')
-    openai.api_key = GPT3TOKEN
-    HUGGINGFACETOKEN = st.text_input("Hugging Face Token", "Insert Token Here")
-    headers = {"Authorization": "Bearer " + HUGGINGFACETOKEN}
+    with st.expander("Tokens"):
+        GPT3TOKEN = st.text_input("GPT3 Token", 'Insert Token Here')
+        openai.api_key = GPT3TOKEN
+        HUGGINGFACETOKEN = st.text_input("Hugging Face Token", "Insert Token Here")
+        headers = {"Authorization": "Bearer " + HUGGINGFACETOKEN}
 
 
     st.header("Text/Link Input")
